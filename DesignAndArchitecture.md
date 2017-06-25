@@ -28,3 +28,4 @@ run test in sbt prompt.
 Future directions
 =================
 Enhance the application as a microservice to enable to consume operations Json base.
+Define and object and language bundle to manage error codes and error messages properly
