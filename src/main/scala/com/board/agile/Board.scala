@@ -24,4 +24,10 @@ case class Card(title: String, description: String, estimate: Int, currentColumn
 class Board(iteration: Iteration)
 case class Iteration(id: Int, columns: Seq[Column], cards: Seq[Card], lastMove: Option[(Card, Card)], velocity: Int) {
   def addCard(card: Card) = this.copy(cards = cards :+ card)
+
+  def moveCard(card: Card, toColumn: Option[Column]):Iteration = {
+    val updatedCard = card.copy(currentColumn = toColumn)
+    val updatedCards = cards.updated(cards.indexOf(card), updatedCard)
+    this.copy(cards = updatedCards, lastMove = Some((card, updatedCard)))
+  }
 }
