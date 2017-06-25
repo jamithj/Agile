@@ -6,7 +6,7 @@ package com.board.agile
 
 import org.scalatest.FunSuite
 
-class TestBoard extends FunSuite{
+class TestBoard extends FunSuite {
 
   val columns = Seq(Column(ColumnName.STARTING, 17), Column(ColumnName.INPROGRESS, 17), Column(ColumnName.DONE, 17))
   val cards = Seq(Card("Title1", "Description1", 3, None), Card("Title2", "Description1", 5, None), Card("Title3", "Description1", 9, None), Card("Title4", "Description1", 16, None))
@@ -54,10 +54,10 @@ class TestBoard extends FunSuite{
 
     //Moving card2 to done column
     val card2InDoneColumn = card2.copy(currentColumn = Some(columnDone))
-        iteration = iteration.moveCard(card2InStartingColumn, Some(columnDone)).right.get
-        assert(iteration.cards.contains(card2InDoneColumn))
-        assert(iteration.lastMove == Some(card2InStartingColumn, card2InDoneColumn))
-        assert(iteration.velocity == 5)
+    iteration = iteration.moveCard(card2InStartingColumn, Some(columnDone)).right.get
+    assert(iteration.cards.contains(card2InDoneColumn))
+    assert(iteration.lastMove == Some(card2InStartingColumn, card2InDoneColumn))
+    assert(iteration.velocity == 5)
 
     //Moving card1 to done column
     val card1InDoneColumn = card1.copy(currentColumn = Some(columnDone))
@@ -66,6 +66,11 @@ class TestBoard extends FunSuite{
     assert(iteration.lastMove == Some(card1InStartingColumn, card1InDoneColumn))
     assert(iteration.velocity == 8)
 
+    //Undo last move
+    iteration = iteration.undoLastMove.right.get
+    assert(iteration.cards.contains(card1InStartingColumn))
+    assert(iteration.lastMove == Some(card1InDoneColumn, card1InStartingColumn))
+    assert(iteration.velocity == 5)
   }
 
 }

@@ -41,4 +41,8 @@ case class Iteration(id: Int, columns: Seq[Column], cards: Seq[Card], lastMove: 
       else
         0
     }).getOrElse(0))
+
+  def undoLastMove = {
+    this.lastMove.map(lm => moveCard(lm._2, lm._1.currentColumn)).getOrElse(Right(this))
+  }
 }
