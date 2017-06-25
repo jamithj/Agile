@@ -26,7 +26,7 @@ class TestBoard extends FunSuite{
     assert(iteration.cards == Seq(card1))
 
     //Moving card1 to starting column
-    iteration = iteration.moveCard(card1, Some(columnStarting))
+    iteration = iteration.moveCard(card1, Some(columnStarting)).right.get
     val card1InStartingColumn = card1.copy(currentColumn = Some(columnStarting))
     assert(iteration.lastMove == Some(card1, card1InStartingColumn))
     assert(iteration.cards.contains(card1InStartingColumn))
@@ -34,7 +34,7 @@ class TestBoard extends FunSuite{
 
     //Moving card2 to starting column
     iteration = iteration.addCard(card2)
-    iteration = iteration.moveCard(card2, Some(columnStarting))
+    iteration = iteration.moveCard(card2, Some(columnStarting)).right.get
     val card2InStartingColumn = card2.copy(currentColumn = Some(columnStarting))
     assert(iteration.lastMove == Some(card2, card2InStartingColumn))
     assert(iteration.cards.contains(card2InStartingColumn))
@@ -42,7 +42,7 @@ class TestBoard extends FunSuite{
 
     //Moving card3 to starting column
     iteration = iteration.addCard(card3)
-    iteration = iteration.moveCard(card3, Some(columnStarting))
+    iteration = iteration.moveCard(card3, Some(columnStarting)).right.get
     val card3InStartingColumn = card3.copy(currentColumn = Some(columnStarting))
     assert(iteration.lastMove == Some(card3, card3InStartingColumn))
     assert(iteration.cards.contains(card3InStartingColumn))
