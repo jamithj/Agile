@@ -59,6 +59,13 @@ class TestBoard extends FunSuite{
         assert(iteration.lastMove == Some(card2InStartingColumn, card2InDoneColumn))
         assert(iteration.velocity == 5)
 
+    //Moving card1 to done column
+    val card1InDoneColumn = card1.copy(currentColumn = Some(columnDone))
+    iteration = iteration.moveCard(card1InStartingColumn, Some(columnDone)).right.get
+    assert(iteration.cards.contains(card1InDoneColumn))
+    assert(iteration.lastMove == Some(card1InStartingColumn, card1InDoneColumn))
+    assert(iteration.velocity == 8)
+
   }
 
 }
