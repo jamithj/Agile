@@ -48,6 +48,9 @@ class TestBoard extends FunSuite{
     assert(iteration.cards.contains(card3InStartingColumn))
     assert(iteration.velocity == 0)
 
+    //Moving card4 to starting column should raise and exception
+    iteration = iteration.addCard(card4)
+    assert(iteration.moveCard(card4, Some(columnStarting)).isLeft)
 
   }
 
