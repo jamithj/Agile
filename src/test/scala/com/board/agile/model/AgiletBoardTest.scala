@@ -1,17 +1,20 @@
-package com.board.agile
+package com.board.agile.model
 
 /**
   * Created by jamit on 25/06/2017.
   */
 
+//import com.board.agile.model.{Board, Card, Column, Iteration}
+import com.board.agile.util.ColumnName
 import org.scalatest.FunSuite
 
-class TestBoard extends FunSuite {
+class AgiletBoardTest extends FunSuite {
 
   val columns = Seq(Column(ColumnName.STARTING, 17), Column(ColumnName.INPROGRESS, 17), Column(ColumnName.DONE, 17))
   val cards = Seq(Card("Title1", "Description1", 3, None), Card("Title2", "Description1", 5, None), Card("Title3", "Description1", 9, None), Card("Title4", "Description1", 16, None))
   var iteration = Iteration(1, columns, Nil, None, 0)
   val board = new Board(iteration)
+
 
   val card1 = cards.head
   val card2 = cards(1)
@@ -20,6 +23,10 @@ class TestBoard extends FunSuite {
   val columnStarting = columns.head
   val columnInProgress = columns(1)
   val columnDone = columns(2)
+
+  test("should be able to create an agile board for a given iteration") {
+    assert(board.getIteration == iteration)
+  }
 
   test("agile board") {
     iteration = iteration.addCard(card1)

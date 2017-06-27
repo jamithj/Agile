@@ -2,7 +2,7 @@ Agile Board
 ===========
 This is a simple agile board application with a board with one iteration and several cards, which facilitate to perform
 following operations. Refer to the link https://gist.github.com/codingricky/44d0547627e56d9c9a70b14beb9434cb for
-requirements.
+requirements. All the changes done to the board are stored in memory.
 
 addCard
 
@@ -35,6 +35,8 @@ run test in sbt prompt.
 
 Future directions
 -----------------
+Enrich the application with a persistent store to hold the state.
+
 Enhance the application as a microservice to enable to consume operations Json base.
 
 Define and object and language bundle to manage error codes and error messages properly
